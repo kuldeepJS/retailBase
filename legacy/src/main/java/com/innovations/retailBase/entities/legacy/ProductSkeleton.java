@@ -31,6 +31,7 @@ public class ProductSkeleton {
 	private int status;
 	private String imageURL;
 	private boolean virtualProduct;
+	private BrandInstance brand;
 	
 	public static int getLOCAL_PID() {
 		return LOCAL_PID;
