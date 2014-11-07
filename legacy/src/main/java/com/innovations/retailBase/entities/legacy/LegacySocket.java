@@ -12,5 +12,5 @@ package com.innovations.retailBase.entities.legacy;
  * @summary 
  */
 public class LegacySocket {
-
+  
 }
