@@ -25,4 +25,16 @@ public class LockFactory {
 		return new LockBase();
 	}
 	
+	public static LockBase getBrandInstanceLock(){
+		return new LockBase();
+	}
+	
+	public static LockBase getPriceInstanceLock(){
+		return new LockBase();
+	}
+	
+	public static LockBase getRetailsDBConnectionLock(){
+		return new LockBase();
+	}
+	
 }

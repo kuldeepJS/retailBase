@@ -6,6 +6,9 @@ package com.innovations.retailBase.entities.legacy;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.innovations.retailBase.locks.LockBase;
+import com.innovations.retailBase.locks.LockFactory;
+
 /**Copyright 2014 Innovations
  * @author Kuldeep Sharma
  * @created 07-Nov-2014
@@ -25,7 +28,11 @@ public class BrandInstance {
 	private String description;
 	private int active;
 	private String imageURL;
+	private boolean virtualInstance;
 	
+	public boolean isVirtualInstance() {
+		return virtualInstance;
+	}
 	public String getImageURL() {
 		return imageURL;
 	}
@@ -67,7 +74,11 @@ public class BrandInstance {
 	}
 	
 	public BrandInstance(){
-		
+		LockBase base = LockFactory.getBrandInstanceLock();
+		base.lock();
+		virtualInstance = true;
+		localBrandId = ++LOCAL_BID;
+		base.unlock();
 	}
 	
 	public BrandInstance(ResultSet rdPointer) throws SQLException{

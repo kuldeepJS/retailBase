@@ -18,8 +18,50 @@ public class ProductInstance {
 	private String name;
 	private String label;
 	private String description;
+	private PriceInstance priceTag;
 	private int status;
-
+	public int getInstanceId() {
+		return instanceId;
+	}
+	public void setInstanceId(int instanceId) {
+		this.instanceId = instanceId;
+	}
+	public ProductSkeleton getProductMaster() {
+		return productMaster;
+	}
+	public void setProductMaster(ProductSkeleton productMaster) {
+		this.productMaster = productMaster;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getLabel() {
+		return label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public PriceInstance getPriceTag() {
+		return priceTag;
+	}
+	public void setPriceTag(PriceInstance priceTag) {
+		this.priceTag = priceTag;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	
 	
 }

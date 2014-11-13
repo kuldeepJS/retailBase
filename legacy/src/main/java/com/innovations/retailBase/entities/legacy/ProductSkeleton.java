@@ -33,6 +33,12 @@ public class ProductSkeleton {
 	private boolean virtualProduct;
 	private BrandInstance brand;
 	
+	public BrandInstance getBrand() {
+		return brand;
+	}
+	public void setBrand(BrandInstance brand) {
+		this.brand = brand;
+	}
 	public static int getLOCAL_PID() {
 		return LOCAL_PID;
 	}
@@ -94,8 +100,8 @@ public class ProductSkeleton {
 	}
 	
 	public ProductSkeleton(ResultSet rdPointer, 
-			HashMap<Integer, 
-			HierarchyInstance> hierarchyInstances) throws SQLException{
+			HashMap<Integer, HierarchyInstance> hierarchyInstances,
+			HashMap<Integer, BrandInstance> brands) throws SQLException{
 		productId = rdPointer.getInt(" ProductId");
 		name = rdPointer.getString("Name");
 		label = rdPointer.getString("Label");
@@ -103,11 +109,16 @@ public class ProductSkeleton {
 		int hierarchyMasterId = rdPointer.getInt("hierarchyMasterId");
 		status = rdPointer.getInt("STATUS");
 		imageURL = rdPointer.getString("ImageURL");
+		int brandId = rdPointer.getInt("BRANDID");
 		
 		//Load the image here or we can delay it(Lazy load)
 		
 		if(hierarchyInstances.containsKey(hierarchyMasterId)){
 			hierarchyInstance = hierarchyInstances.get(hierarchyMasterId);
+		}
+		
+		if(brands.containsKey(brandId)){
+			brand = brands.get(brandId);
 		}
 	}
 	

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Database address="50.62.209.107" port="3306">
+	<!-- User=archprd; Password=~Royals88~ -->
+	<Schema name="ARCH_PRD" description="">
+		<Table name="BRAND_MASTER" description="Store brand master data">
+			<Association 
+				package="com.innovations.retailBase.entities.legacy" 
+				name="BrandInstance"
+				loadingType="1"/>
+			<Column name="BRANDID" property="brandId" dbType="INT" jType="int"/>
+			<Column name="NAME" property="name" dbType="VARCHAR(200)" jType="String"/>
+			<Column name="LABEL" property="label" dbType="VARCHAR(2000)" jType="String"/>
+			<Column name="DESCRIPTION" property="description" dbType="VARCHAR(4000)" jType="String"/>
+			<Column name="IS_ACTIVE" property="active" dbType="INT" jType="int"/>
+			<Column name="IMAGEURL" property="imageURL" dbType="VARCHAR(4000)" jType="String"/>
+		</Table>
+		<Table 
+			name="HIERARCHY_MASTER" 
+			description="Store hierarchy information"
+			loadingType="1">
+			<Association package="com.innovations.retailBase.entities.legacy" name="HierarchyInstance"/>
+			<Column name="MasterId" property="masterId" dbType="INT" jType="int"/>
+			<Column name="Level" property="level" dbType="INT" jType="int"/>
+			<Column name="ParentId" property="partentId" dbType="INT" jType="int"/>
+			<Column name="Description" property="description" dbType="VARCHAR(4000)" jType="String"/>
+			<Column name="Status" property="status" dbType="INT" jType="int"/>
+		</Table>
+		<Table 
+			name="PRICE_MASTER" 
+			description="Store the price details"
+			loadingType="1">
+			<Association package="com.innovations.retailBase.entities.legacy" name="PriceInstance"/>
+			<Column name="PRICE_ID" property="priceId" dbType="INT" jType="int"/>
+			<Column name="SELLING_PRICE" property="sellingPrice" dbType="FLOAT" jType="float"/>
+			<Column name="BUYING_PRICE" property="buyingPrice" dbType="FLOAT" jType="float"/>
+			<Column name="VALID_TILL" property="validTill" dbType="TIMESTAMP" jType="Timestamp"/>
+			<Column name="INVENTORY" property="-NA-" dbType="INT" jType="int"/>
+			<Column name="ZONE_LEVEL" property="-NA-" dbType="INT" jType="int"/>
+			<Column name="ZONE_POINTER" property="-NA-" dbType="INT" jType="int"/>
+			<Column name="IS_ACTIVE" property="active" dbType="INT" jType="int"/>
+			<Column name="PRD_INSTANCE_ID" property="productInstanceId" dbType="INT" jType="int"/>
+		</Table>
+	</Schema>
+</Database>
