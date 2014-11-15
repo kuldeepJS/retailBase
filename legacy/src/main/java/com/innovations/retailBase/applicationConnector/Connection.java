@@ -5,6 +5,9 @@ package com.innovations.retailBase.applicationConnector;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+
+import com.innovations.retailBase.logger.LoggerHandle;
 
 /**Copyright 2014 Innovations
  * @author Kuldeep Sharma
@@ -16,9 +19,12 @@ import java.sql.SQLException;
  */
 public class Connection {
 	
+	private static int connectionCount = 0;
+	
 	java.sql.Connection innerConnection;
 	
 	protected Connection(DatabaseConnector.DatabaseProperties dbProperties) throws ClassNotFoundException, SQLException{
+		LoggerHandle.println("Loading driver for " + dbProperties.getDriverName() + " @ index " + (++connectionCount), 1, 1);
 		Class.forName(dbProperties.getDriverName());
 		
 		innerConnection = DriverManager.getConnection(
@@ -30,5 +36,8 @@ public class Connection {
 		
 	}
 	
+	public Statement createStatement() throws SQLException{
+		return innerConnection.createStatement();
+	}
 	
 }

@@ -29,7 +29,11 @@ public class DatabaseConnector {
 	private LockBase dbLock;
 	private int maxRetryCount;
 	private long waitLimit;
+	private static DatabaseProperties dbProperties;
 	
+	public String getConnectedSchema(){
+		return dbProperties.getSchema();
+	}
 	
 	public static DatabaseConnector getLocalInstance() {
 		return localInstance;
@@ -66,7 +70,9 @@ public class DatabaseConnector {
 		maxNumberOfConnections = 10;
 		
 		//Loading connection properties
-		DatabaseProperties dbProperties = new DatabaseProperties();
+		dbProperties = new DatabaseProperties();
+		dbProperties.driverName = "com.mysql.jdbc.Driver";
+		dbProperties.driverConnectorSuffix = "jdbc:mysql";
 		dbProperties.serverAddress = "50.62.209.107";
 		dbProperties.serverPort = 3306;
 		dbProperties.schema = "ARCH_PRD";

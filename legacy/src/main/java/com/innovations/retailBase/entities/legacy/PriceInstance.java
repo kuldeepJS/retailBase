@@ -19,7 +19,7 @@ import com.innovations.retailBase.locks.LockFactory;
  * @package com.innovations.retailBase.entities.legacy
  * @summary 
  */
-public class PriceInstance {
+public class PriceInstance implements LegacyEntity {
 	
 	private static int LOC_PID=0;
 	

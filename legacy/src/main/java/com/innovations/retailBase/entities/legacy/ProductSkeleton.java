@@ -18,7 +18,7 @@ import com.innovations.retailBase.locks.LockFactory;
  * @package com.innovations.retailBase.entities.legacy
  * @summary This class contains the details from product_master
  */
-public class ProductSkeleton {
+public class ProductSkeleton implements LegacyEntity {
 	
 	private static int LOCAL_PID = 0;
 	

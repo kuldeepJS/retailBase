@@ -17,7 +17,7 @@ import com.innovations.retailBase.locks.LockFactory;
  * @package com.innovations.retailBase.entities.legacy
  * @summary 
  */
-public class BrandInstance {
+public class BrandInstance implements LegacyEntity {
 	
 	private static int LOCAL_BID = 0;
 	
@@ -90,4 +90,8 @@ public class BrandInstance {
 		imageURL = rdPointer.getString("IMAGEURL");
 	}
 	
+	@Override
+	public String toString(){
+		return "ID: T -> " + brandId + " |-> T " + localBrandId + " |-> Name = " + name;
+	}
 }

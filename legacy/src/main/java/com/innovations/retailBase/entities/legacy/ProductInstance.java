@@ -11,7 +11,7 @@ package com.innovations.retailBase.entities.legacy;
  * @package com.innovations.retailBase.entities.legacy
  * @summary Stores data from product_instance table
  */
-public class ProductInstance {
+public class ProductInstance implements LegacyEntity {
 	
 	private int instanceId;
 	private ProductSkeleton productMaster;

@@ -13,7 +13,7 @@ import java.util.List;
  * @package com.innovations.retailBase.entities.legacy
  * @summary Loads combinational data for zones 
  */
-public class ZoneInstance {
+public class ZoneInstance implements LegacyEntity {
 	
 	private static String ZONE_COMBO_ID = "S0;D0;C0;A0";
 	private static List<ZoneInstance> combinationalZones;

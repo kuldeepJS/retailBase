@@ -7,38 +7,48 @@
 				package="com.innovations.retailBase.entities.legacy" 
 				name="BrandInstance"
 				loadingType="1"/>
-			<Column name="BRANDID" property="brandId" dbType="INT" jType="int"/>
-			<Column name="NAME" property="name" dbType="VARCHAR(200)" jType="String"/>
-			<Column name="LABEL" property="label" dbType="VARCHAR(2000)" jType="String"/>
-			<Column name="DESCRIPTION" property="description" dbType="VARCHAR(4000)" jType="String"/>
-			<Column name="IS_ACTIVE" property="active" dbType="INT" jType="int"/>
-			<Column name="IMAGEURL" property="imageURL" dbType="VARCHAR(4000)" jType="String"/>
+			<Columns>
+				<Column name="BRANDID" property="brandId" dbType="INT" jType="int"/>
+				<Column name="NAME" property="name" dbType="VARCHAR(200)" jType="String"/>
+				<Column name="LABEL" property="label" dbType="VARCHAR(2000)" jType="String"/>
+				<Column name="DESCRIPTION" property="description" dbType="VARCHAR(4000)" jType="String"/>
+				<Column name="IS_ACTIVE" property="active" dbType="INT" jType="int"/>
+				<Column name="IMAGEURL" property="imageURL" dbType="VARCHAR(4000)" jType="String"/>
+			</Columns>
 		</Table>
 		<Table 
 			name="HIERARCHY_MASTER" 
-			description="Store hierarchy information"
-			loadingType="1">
-			<Association package="com.innovations.retailBase.entities.legacy" name="HierarchyInstance"/>
-			<Column name="MasterId" property="masterId" dbType="INT" jType="int"/>
-			<Column name="Level" property="level" dbType="INT" jType="int"/>
-			<Column name="ParentId" property="partentId" dbType="INT" jType="int"/>
-			<Column name="Description" property="description" dbType="VARCHAR(4000)" jType="String"/>
-			<Column name="Status" property="status" dbType="INT" jType="int"/>
+			description="Store hierarchy information">
+			<Association 
+				package="com.innovations.retailBase.entities.legacy" 
+				name="HierarchyInstance"
+				loadingType="1"/>
+			<Columns>
+				<Column name="MasterId" property="masterId" dbType="INT" jType="int"/>
+				<Column name="Level" property="level" dbType="INT" jType="int"/>
+				<Column name="ParentId" property="partentId" dbType="INT" jType="int"/>
+				<Column name="Description" property="description" dbType="VARCHAR(4000)" jType="String"/>
+				<Column name="Status" property="status" dbType="INT" jType="int"/>
+			</Columns>
 		</Table>
 		<Table 
 			name="PRICE_MASTER" 
-			description="Store the price details"
-			loadingType="1">
-			<Association package="com.innovations.retailBase.entities.legacy" name="PriceInstance"/>
-			<Column name="PRICE_ID" property="priceId" dbType="INT" jType="int"/>
-			<Column name="SELLING_PRICE" property="sellingPrice" dbType="FLOAT" jType="float"/>
-			<Column name="BUYING_PRICE" property="buyingPrice" dbType="FLOAT" jType="float"/>
-			<Column name="VALID_TILL" property="validTill" dbType="TIMESTAMP" jType="Timestamp"/>
-			<Column name="INVENTORY" property="-NA-" dbType="INT" jType="int"/>
-			<Column name="ZONE_LEVEL" property="-NA-" dbType="INT" jType="int"/>
-			<Column name="ZONE_POINTER" property="-NA-" dbType="INT" jType="int"/>
-			<Column name="IS_ACTIVE" property="active" dbType="INT" jType="int"/>
-			<Column name="PRD_INSTANCE_ID" property="productInstanceId" dbType="INT" jType="int"/>
+			description="Store the price details">
+			<Association 
+				package="com.innovations.retailBase.entities.legacy" 
+				name="PriceInstance"
+				loadingType="1"/>
+			<Columns>
+				<Column name="PRICE_ID" property="priceId" dbType="INT" jType="int"/>
+				<Column name="SELLING_PRICE" property="sellingPrice" dbType="FLOAT" jType="float"/>
+				<Column name="BUYING_PRICE" property="buyingPrice" dbType="FLOAT" jType="float"/>
+				<Column name="VALID_TILL" property="validTill" dbType="TIMESTAMP" jType="Timestamp"/>
+				<Column name="INVENTORY" property="-NA-" dbType="INT" jType="int"/>
+				<Column name="ZONE_LEVEL" property="-NA-" dbType="INT" jType="int"/>
+				<Column name="ZONE_POINTER" property="-NA-" dbType="INT" jType="int"/>
+				<Column name="IS_ACTIVE" property="active" dbType="INT" jType="int"/>
+				<Column name="PRD_INSTANCE_ID" property="productInstanceId" dbType="INT" jType="int"/>
+			</Columns>
 		</Table>
 	</Schema>
 </Database>

@@ -21,7 +21,7 @@ import com.innovations.retailBase.locks.LockFactory;
  * @summary This class stores the information based on 
  * the table HIERARCHY_MASTER
  */
-public class HierarchyInstance {
+public class HierarchyInstance implements LegacyEntity {
 	
 	private static int LOCAL_HID = 0;
 	
