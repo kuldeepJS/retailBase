@@ -50,5 +50,23 @@
 				<Column name="PRD_INSTANCE_ID" property="productInstanceId" dbType="INT" jType="int"/>
 			</Columns>
 		</Table>
+		<Table 
+			name="PRODUCT_MASTER" 
+			description="Store the product details">
+			<Association 
+				package="com.innovations.retailBase.entities.legacy" 
+				name="ProductSkeleton"
+				loadingType="1"/>
+			<Columns>
+				<Column name="ProductId" property="productId" dbType="INT" jType="int"/>
+				<Column name="Name" property="name" dbType="FLOAT" jType="float"/>
+				<Column name="Label" property="label" dbType="FLOAT" jType="float"/>
+				<Column name="Description" property="description" dbType="TIMESTAMP" jType="Timestamp"/>
+				<Column name="HierarchyMasterId" property="hierarchyInstance" dbType="INT" jType="class"/>
+				<Column name="STATUS" property="status" dbType="INT" jType="int"/>
+				<Column name="ImageURL" property="imageURL" dbType="VARCHAR" jType="String"/>
+				<Column name="BRANDID" property="brand" dbType="INT" jType="class"/>
+			</Columns>
+		</Table>
 	</Schema>
 </Database>

@@ -6,9 +6,6 @@ package com.innovations.retailBase.entities.legacy;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.innovations.retailBase.locks.LockBase;
-import com.innovations.retailBase.locks.LockFactory;
-
 /**Copyright 2014 Innovations
  * @author Kuldeep Sharma
  * @created 07-Nov-2014
@@ -74,11 +71,7 @@ public class BrandInstance implements LegacyEntity {
 	}
 	
 	public BrandInstance(){
-		LockBase base = LockFactory.getBrandInstanceLock();
-		base.lock();
-		virtualInstance = true;
-		localBrandId = ++LOCAL_BID;
-		base.unlock();
+		
 	}
 	
 	public BrandInstance(ResultSet rdPointer) throws SQLException{

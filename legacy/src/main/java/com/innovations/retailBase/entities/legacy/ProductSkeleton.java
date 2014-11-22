@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import com.innovations.retailBase.applicationConnector.ORMTable;
 import com.innovations.retailBase.locks.LockBase;
 import com.innovations.retailBase.locks.LockFactory;
 
@@ -101,8 +102,9 @@ public class ProductSkeleton implements LegacyEntity {
 	
 	public ProductSkeleton(ResultSet rdPointer, 
 			HashMap<Integer, HierarchyInstance> hierarchyInstances,
-			HashMap<Integer, BrandInstance> brands) throws SQLException{
-		productId = rdPointer.getInt(" ProductId");
+			HashMap<Integer, BrandInstance> brands,
+			ORMTable ormMapping) throws SQLException{
+		productId = rdPointer.getInt("ProductId");
 		name = rdPointer.getString("Name");
 		label = rdPointer.getString("Label");
 		description = rdPointer.getString("description");

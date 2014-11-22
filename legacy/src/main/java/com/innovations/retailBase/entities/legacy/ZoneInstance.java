@@ -61,5 +61,35 @@ public class ZoneInstance implements LegacyEntity {
 			return false;
 		}
 	}
+
+	public static String getZONE_COMBO_ID() {
+		return ZONE_COMBO_ID;
+	}
+
+	public static List<ZoneInstance> getCombinationalZones() {
+		return combinationalZones;
+	}
+
+	public Object getZoneId() {
+		return zoneId;
+	}
+
+	public List<ZoneInstance> getContainedZones() {
+		return containedZones;
+	}
+
+	public ZoneInstance getParentInstance() {
+		return parentInstance;
+	}
+
+	public boolean isVirtualInstance() {
+		return virtualInstance;
+	}
+
+	public int getZoneLevel() {
+		return zoneLevel;
+	}
+	
+	
 	
 }

@@ -15,7 +15,6 @@ import org.junit.Test;
 
 import com.innovations.retailBase.entities.connector.BrandsConnector;
 import com.innovations.retailBase.logger.LoggerHandle;
-import com.innovations.retailBase.utility.xmlParsers.ORMXMLParser;
 
 /**Copyright 2014 Innovations
  * @author Kuldeep Sharma
@@ -28,8 +27,6 @@ import com.innovations.retailBase.utility.xmlParsers.ORMXMLParser;
 public class BrandConnectorTest {
 
 	private static String PWD;
-	private BrandsConnector connector;
-	private ORMXMLParser xmlParser;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -57,7 +54,7 @@ public class BrandConnectorTest {
 		String ormMappingXmlRelFolder = "\\target\\classes\\com\\innovations\\retailBase\\applicationConnector\\";
         String ormMappingXml = "ClassSchemaMapping.xml";
         String path = PWD + ormMappingXmlRelFolder + ormMappingXml;
-		xmlParser = new ORMXMLParser(path);
+        LoggerHandle.println("Expected xml path: " + path, 1, 1);
 	}
 
 	/**
@@ -66,8 +63,7 @@ public class BrandConnectorTest {
 	@Test
 	public final void testGetBrandCache() {
 		try {
-			connector = new BrandsConnector(xmlParser);
-			assertNotNull(connector.getBrandCache());
+			assertNotNull(BrandsConnector.getBrandCache());
 		} catch (SQLException e) {
 			e.printStackTrace(LoggerHandle.getLoggerPrintStream(1));
 			fail("Error in loading brands...");

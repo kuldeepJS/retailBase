@@ -144,8 +144,7 @@ public class HierarchyInstance implements LegacyEntity {
 	}
 	
 	public HierarchyInstance(ResultSet rdPointer, 
-			HashMap<Integer, 
-			HierarchyInstance> hierarchyInstances) throws SQLException{
+			HashMap<Integer, HierarchyInstance> hierarchyInstances) throws SQLException{
 		hierarchyId = rdPointer.getInt("MasterId");
 		level = rdPointer.getInt("level");
 		status = rdPointer.getInt("Status");
