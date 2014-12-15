@@ -10,6 +10,7 @@ import java.sql.Statement;
 
 import com.innovations.retailBase.applicationConnector.Connection;
 import com.innovations.retailBase.applicationConnector.DatabaseConnector;
+import com.innovations.retailBase.applicationConnector.ORMColumnMap;
 import com.innovations.retailBase.applicationConnector.ORMSchema;
 import com.innovations.retailBase.applicationConnector.ORMTable;
 import com.innovations.retailBase.entities.legacy.LegacyEntity;
@@ -53,8 +54,49 @@ public class ConnectorBase {
 		linker = new ORMLinker(ormMapping);
 	}
 	
+	public ConnectorBase(ORMXMLParser xmlParser, Class<? extends LegacyEntity> targetClass, String orderByProperty) throws SQLException{
+		this.xmlParser = xmlParser;
+		
+		ormMapping = ORMTable.getORMTableByAssociatedClass(
+								ORMSchema.getORMSchemaByName(
+										xmlParser.getDatabaseInfo(), 
+										"ARCH_PRD"), 
+										targetClass);
+		dbConnector = DatabaseConnector.getDatabaseConnector();
+		if(dbConnector.isConsumable()){
+			retailConnector = dbConnector.getRetailConnection();
+		} else {
+			throw new InvalidParameterException("Unable to connect to database. Please contact administrator...");
+		}
+		
+		ORMColumnMap orderByColumn = null;
+		for(ORMColumnMap col : ormMapping.getColumnMappings()){
+			if(col.getProperty().equals(orderByProperty)){
+				orderByColumn = col;
+				break;
+			}
+		}
+		
+		if(orderByColumn != null)
+			rsPointer = prepareLoading(orderByColumn);
+		else
+			rsPointer = prepareLoading();
+		
+		linker = new ORMLinker(ormMapping);
+	}
+	
 	private ResultSet prepareLoading() throws SQLException{
 		selectSQL = "SELECT * FROM " + dbConnector.getConnectedSchema() + "." + ormMapping.getName() + ";";
+		Statement stmt = retailConnector.createStatement();
+		
+		if(stmt.execute(selectSQL))
+			return stmt.getResultSet();
+		
+		return null;
+	}
+	
+	private ResultSet prepareLoading(ORMColumnMap orderBy) throws SQLException{
+		selectSQL = "SELECT * FROM " + dbConnector.getConnectedSchema() + "." + ormMapping.getName() + " ORDER BY " + orderBy.getColumnName() + ";";
 		Statement stmt = retailConnector.createStatement();
 		
 		if(stmt.execute(selectSQL))
@@ -89,6 +131,11 @@ public class ConnectorBase {
 
 	public ResultSet getRsPointer() {
 		return rsPointer;
+	}
+	
+	protected void releaseConnection(){
+		if(retailConnector != null)
+			dbConnector.releaseRetailConnection(retailConnector);
 	}
 	
 	

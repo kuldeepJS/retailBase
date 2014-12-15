@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: com.innovations.retailBase.unitTests.entities.connector.BrandConnectorTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.106 sec <<< FAILURE!
+com.innovations.retailBase.unitTests.entities.connector.BrandConnectorTest.testGetBrandCache()  Time elapsed: 0.106 sec  <<< FAILURE!
+java.security.InvalidParameterException: Unable to connect to database. Please contact administrator...
+	at com.innovations.retailBase.entities.connector.ConnectorBase.<init>(ConnectorBase.java:49)
+	at com.innovations.retailBase.entities.connector.BrandsConnector.<init>(BrandsConnector.java:28)
+	at com.innovations.retailBase.entities.connector.BrandsConnector.getBrandCache(BrandsConnector.java:46)
+	at com.innovations.retailBase.unitTests.entities.connector.BrandConnectorTest.testGetBrandCache(BrandConnectorTest.java:66)

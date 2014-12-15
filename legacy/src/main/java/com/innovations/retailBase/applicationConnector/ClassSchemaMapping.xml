@@ -32,6 +32,21 @@
 			</Columns>
 		</Table>
 		<Table 
+			name="STORE_OPERATIONS" 
+			description="Store store's operation information">
+			<Association 
+				package="com.innovations.retailBase.entities.legacy" 
+				name="StoreOperation"
+				loadingType="1"/>
+			<Columns>
+				<Column name="MasterId" property="masterId" dbType="INT" jType="int"/>
+				<Column name="Level" property="level" dbType="INT" jType="int"/>
+				<Column name="ParentId" property="partentId" dbType="INT" jType="int"/>
+				<Column name="Description" property="description" dbType="VARCHAR(4000)" jType="String"/>
+				<Column name="Status" property="status" dbType="INT" jType="int"/>
+			</Columns>
+		</Table>
+		<Table 
 			name="PRICE_MASTER" 
 			description="Store the price details">
 			<Association 

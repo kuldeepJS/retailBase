@@ -4,6 +4,7 @@
 package com.innovations.retailBase.applicationConnector;
 
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -39,5 +40,10 @@ public class Connection {
 	public Statement createStatement() throws SQLException{
 		return innerConnection.createStatement();
 	}
+	
+	public PreparedStatement getPreparedStatement(String sql) throws SQLException{
+		return innerConnection.prepareStatement(sql);
+	}
+	
 	
 }

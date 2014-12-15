@@ -8,6 +8,7 @@ import java.util.Vector;
 
 import com.innovations.retailBase.locks.LockBase;
 import com.innovations.retailBase.locks.LockFactory;
+import com.innovations.retailBase.logger.LoggerHandle;
 
 /**Copyright 2014 Innovations
  * @author Kuldeep Sharma
@@ -67,7 +68,7 @@ public class DatabaseConnector {
 	 */
 	private DatabaseConnector(){
 		//This should be configurable at latter stages
-		maxNumberOfConnections = 10;
+		maxNumberOfConnections = 2;
 		
 		//Loading connection properties
 		dbProperties = new DatabaseProperties();
@@ -96,11 +97,11 @@ public class DatabaseConnector {
 			
 		} catch (ClassNotFoundException e) {
 			//Error loading the driver
-			e.printStackTrace();
+			e.printStackTrace(LoggerHandle.getLoggerPrintStream(1));
 			encounteredException = e;
 		} catch (SQLException e) {
 			//Error connecting database
-			e.printStackTrace();
+			e.printStackTrace(LoggerHandle.getLoggerPrintStream(1));
 			encounteredException = e;
 		}
 	}
@@ -128,6 +129,12 @@ public class DatabaseConnector {
 	}
 	
 	public void releaseRetailConnection(Connection trgCon){
+		try {
+			if(!trgCon.innerConnection.isClosed())
+				trgCon.innerConnection.close();
+		} catch (SQLException e) {
+			e.printStackTrace(LoggerHandle.getLoggerPrintStream(1));
+		}
 		underUseConnections.remove(trgCon);
 		availableConnections.add(trgCon);
 		dbLock.notifyAll();

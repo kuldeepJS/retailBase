@@ -25,7 +25,7 @@ public class HierarchyConnector extends ConnectorBase {
 	
 	private HierarchyConnector(ORMXMLParser xmlParser) throws SQLException {
 		
-		super(xmlParser, HierarchyInstance.class);
+		super(xmlParser, HierarchyInstance.class, "level");
 		
 		hierarchyCache = new HashMap<Integer, HierarchyInstance>();
 		while(rsPointer.next()) {
@@ -39,11 +39,19 @@ public class HierarchyConnector extends ConnectorBase {
 			}
 		}
 		
+		//Release the connection
+		releaseConnection();
 	}
 
 	public synchronized static HashMap<Integer, HierarchyInstance> getHierarchyCache() throws SQLException {
-		if(connectorInstance == null)
+		if(connectorInstance == null){
 			connectorInstance = new HierarchyConnector(ORMXMLParser.getPrdArchParser());
+			for(HierarchyInstance instance : connectorInstance.hierarchyCache.values()){
+				if(instance.getParentHierarchy() != null){
+					instance.getParentHierarchy().addChild(instance);
+				}
+			}
+		}
 		return connectorInstance.hierarchyCache;
 	}
 	

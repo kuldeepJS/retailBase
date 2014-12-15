@@ -29,9 +29,10 @@ public class ORMXMLParser extends LegacyParsers {
 	static {
 		try {
 			String PWD = new java.io.File( "." ).getCanonicalPath();
-			
+			//E:\Goods4u\Git\BaseEntities\legacy\src\main\java\com\innovations\retailBase\applicationConnector\ClassSchemaMapping.xml
+			PWD = "E:/Goods4u/Git/BaseEntities/legacy/src/main/java";
 			//Path for Product arch schema xml path
-			String ormMappingXmlRelFolder = "\\target\\classes\\com\\innovations\\retailBase\\applicationConnector\\";
+			String ormMappingXmlRelFolder = "/com/innovations/retailBase/applicationConnector/";
 	        String ormMappingXml = "ClassSchemaMapping.xml";
 	        prdArchXMLPath = PWD + ormMappingXmlRelFolder + ormMappingXml;
 			prdArchParser = new ORMXMLParser(prdArchXMLPath);

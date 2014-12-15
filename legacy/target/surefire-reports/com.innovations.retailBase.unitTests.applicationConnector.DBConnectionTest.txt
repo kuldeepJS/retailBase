@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: com.innovations.retailBase.unitTests.applicationConnector.DBConnectionTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.046 sec <<< FAILURE!
+com.innovations.retailBase.unitTests.applicationConnector.DBConnectionTest.testGetDatabaseConnector()  Time elapsed: 0.043 sec  <<< FAILURE!
+java.lang.NoClassDefFoundError: org/junit/Assert
+	at com.innovations.retailBase.unitTests.applicationConnector.DBConnectionTest.testGetDatabaseConnector(DBConnectionTest.java:50)
+Caused by: java.lang.ClassNotFoundException: org.junit.Assert
+	at java.net.URLClassLoader$1.run(Unknown Source)
+	at java.net.URLClassLoader$1.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 19 more
