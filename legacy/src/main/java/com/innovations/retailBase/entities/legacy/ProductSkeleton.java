@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import com.innovations.retailBase.applicationConnector.ORMTable;
-import com.innovations.retailBase.locks.LockBase;
-import com.innovations.retailBase.locks.LockFactory;
 
 /**Copyright 2014 Innovations
  * @author Kuldeep Sharma
@@ -93,11 +91,10 @@ public class ProductSkeleton implements LegacyEntity {
 	}
 	
 	public ProductSkeleton(){
-		LockBase lock = LockFactory.getProductMasterLock();
-		lock.lock();
+		
 		localProductId = ++LOCAL_PID;
 		virtualProduct = true;
-		lock.unlock();
+		
 	}
 	
 	public ProductSkeleton(ResultSet rdPointer, 

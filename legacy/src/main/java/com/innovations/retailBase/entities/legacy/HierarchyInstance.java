@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.locks.ReadWriteLock;
 
-import com.innovations.retailBase.locks.LockBase;
 import com.innovations.retailBase.locks.LockFactory;
 
 /**Copyright 2014 Innovations
@@ -125,11 +125,11 @@ public class HierarchyInstance implements LegacyEntity {
 	}
 	
 	public HierarchyInstance(){
-		LockBase base = LockFactory.getHierarchyLock();
-		base.lock();
+		ReadWriteLock base = LockFactory.getHierarchyLock(false);
+		base.readLock().lock();
 		localHierarchId = ++LOCAL_HID;
 		virtualMode = true;
-		base.unlock();
+		base.readLock().unlock();
 	}
 	
 	public void linkToHierarchyInstance(HierarchyInstance hierarchyInstance) throws IllegalAccessException{

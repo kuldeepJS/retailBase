@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.innovations.retailBase.locks.LockBase;
-import com.innovations.retailBase.locks.LockFactory;
 
 /**Copyright 2014 Innovations
  * @author Kuldeep Sharma
@@ -122,11 +120,10 @@ public class StoreOperation implements LegacyEntity  {
 	}
 	
 	public StoreOperation(){
-		LockBase base = LockFactory.getHierarchyLock();
-		base.lock();
+		
 		localHierarchId = ++LOCAL_HID;
 		virtualMode = true;
-		base.unlock();
+		
 	}
 	
 	public void linkToHierarchyInstance(StoreOperation hierarchyInstance) throws IllegalAccessException{

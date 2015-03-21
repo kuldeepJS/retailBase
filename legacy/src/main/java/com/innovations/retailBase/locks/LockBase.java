@@ -3,9 +3,8 @@
  */
 package com.innovations.retailBase.locks;
 
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReadWriteLock;
 
 /**Copyright 2014 Innovations
  * @author Kuldeep Sharma
@@ -15,45 +14,40 @@ import java.util.concurrent.locks.Lock;
  * @package com.innovations.retailBase.locks
  * @summary 
  */
-public class LockBase implements Lock {
+public class LockBase implements ReadWriteLock {
 
-	@Override
-	public void lock() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void lockInterruptibly() throws InterruptedException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean tryLock() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean tryLock(long time, TimeUnit unit)
-			throws InterruptedException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void unlock() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Condition newCondition() {
-		// TODO Auto-generated method stub
-		return null;
+	private ReadWriteLock lockInstance;
+	private boolean forWrite;
+	
+	public LockBase(ReadWriteLock lockInstance, boolean forWrite){
+		this.lockInstance = lockInstance;
+		this.forWrite = forWrite;
 	}
 	
+	@Override
+	public Lock readLock() {
+		
+		Lock readLock = lockInstance.readLock();
+		
+		while(!readLock.tryLock())
+			readLock.lock();
+			
+		return readLock;
+	}
+
+	@Override
+	public Lock writeLock() {
+		
+		if(!forWrite)
+			return null;
+		
+		Lock writeLock = lockInstance.writeLock();
+		while(!writeLock.tryLock())
+			writeLock.lock();
+		
+		return writeLock;
+	}
+
 	
 	
 }

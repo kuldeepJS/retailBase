@@ -5,8 +5,8 @@ package com.innovations.retailBase.applicationConnector;
 
 import java.sql.SQLException;
 import java.util.Vector;
+import java.util.concurrent.locks.ReadWriteLock;
 
-import com.innovations.retailBase.locks.LockBase;
 import com.innovations.retailBase.locks.LockFactory;
 import com.innovations.retailBase.logger.LoggerHandle;
 
@@ -27,7 +27,7 @@ public class DatabaseConnector {
 	private int maxNumberOfConnections;
 	private boolean consumable;
 	private Exception encounteredException;
-	private LockBase dbLock;
+	private ReadWriteLock dbLock;
 	private int maxRetryCount;
 	private long waitLimit;
 	private static DatabaseProperties dbProperties;
@@ -91,7 +91,7 @@ public class DatabaseConnector {
 			}
 			
 			consumable = true;
-			dbLock = LockFactory.getRetailsDBConnectionLock();
+			dbLock = LockFactory.getRetailsDBConnectionLock(true);
 			waitLimit = 1000;
 			maxRetryCount = 5;
 			
@@ -119,6 +119,15 @@ public class DatabaseConnector {
 				throw new IllegalStateException("Connection pool sinked :( Some one not returning...");
 			
 			Connection tmpCon = availableConnections.remove(0);
+			try {
+				if(tmpCon.innerConnection.isClosed()){
+					tmpCon = new Connection(dbProperties);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace(LoggerHandle.getLoggerPrintStream(1));
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace(LoggerHandle.getLoggerPrintStream(1));
+			}
 			underUseConnections.add(tmpCon);
 			return tmpCon;
 		} catch (InterruptedException e) {
@@ -137,7 +146,11 @@ public class DatabaseConnector {
 		}
 		underUseConnections.remove(trgCon);
 		availableConnections.add(trgCon);
-		dbLock.notifyAll();
+		try{
+			dbLock.notifyAll();
+		} catch(Exception ex){
+			LoggerHandle.println("Error notifying listeneres...", 1, 1);
+		}
 	}
 	
 	/*

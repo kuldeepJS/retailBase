@@ -8,9 +8,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.HashMap;
 
-import com.innovations.retailBase.locks.LockBase;
-import com.innovations.retailBase.locks.LockFactory;
-
 /**Copyright 2014 Innovations
  * @author Kuldeep Sharma
  * @created 07-Nov-2014
@@ -74,10 +71,8 @@ public class PriceInstance implements LegacyEntity {
 	}
 	
 	public PriceInstance(){
-		LockBase base = LockFactory.getPriceInstanceLock();
-		base.lock();
+		
 		localPriceId = ++LOC_PID;
-		base.unlock();
 	}
 	
 	public PriceInstance(ResultSet rdPointer,
