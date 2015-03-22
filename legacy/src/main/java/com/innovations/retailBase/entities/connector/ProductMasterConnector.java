@@ -8,7 +8,7 @@ import com.innovations.retailBase.entities.legacy.HierarchyInstance;
 import com.innovations.retailBase.entities.legacy.ProductSkeleton;
 import com.innovations.retailBase.utility.xmlParsers.ORMXMLParser;
 
-public class ProductMasterConnector extends ConnectorBase{
+public class ProductMasterConnector extends ConnectorBase {
 
 	private HashMap<Integer, ProductSkeleton> productCache;
 	private static ProductMasterConnector connectorInstance;
@@ -33,7 +33,5 @@ public class ProductMasterConnector extends ConnectorBase{
 					BrandsConnector.getBrandCache());
 		return connectorInstance.productCache;
 	}
-	
-	
 	
 }
