@@ -1,0 +1,27 @@
+td.container{
+	background-color: #E8E8E8;
+}
+
+td.menubarContainer{
+	background-color: transparent;
+}
+
+td.settingContainer{
+	background-color: #FF6600;
+	
+	border-left: 3px;
+	border-color: #0066CC;
+	width: 160px;
+}
+
+td.cntBody{
+	background-color: #99CCFF;
+	min-height: 500px;
+}
+
+td.bannerContainer{
+	background-color: #FF6600;
+}
+td.footerContainer{
+	background-color: #FF6600;
+}
